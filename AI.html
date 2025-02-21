@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Personalized Treatment Planner by Eukaryote</title>
+    <style>
+        /* Background Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, rgb(150,41,190), rgb(251,71,222));
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Form Container */
+        .container {
+            background: black;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 25px rgba(251,71,222, 0.6);
+            width: 380px;
+            text-align: center;
+        }
+
+        /* Title */
+        h2 {
+            color: rgb(251,71,222);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Labels */
+        label {
+            display: block;
+            margin-top: 12px;
+            font-size: 16px;
+            text-align: left;
+            color: white;
+        }
+
+        /* Input & Select Box Styling */
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid rgb(251,71,222);
+            border-radius: 8px;
+            background: black;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* White Placeholder Text */
+        input::placeholder {
+            color: white;
+            opacity: 1; /* Ensures full visibility */
+        }
+
+        /* Button Styling */
+        .submit-btn {
+            background: rgb(251,71,222);
+            border: none;
+            color: black;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: rgb(150,41,190);
+            color: white;
+        }
+
+        /* Typing Effect for AI Response */
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: none;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .typing {
+            white-space: pre-wrap;
+            border-right: 3px solid white;
+            font-size: 16px;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(40, end) forwards, blink 0.8s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>AI-Powered Personalized Treatment Planner by Eukaryote</h2>
+
+        <label>Age:</label>
+        <input type="number" id="age" placeholder="Enter your age" required>
+
+        <label>Gender:</label>
+        <select id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label>Do you smoke?</label>
+        <select id="smoking">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label>Blood Pressure (mmHg):</label>
+        <input type="number" id="bp" placeholder="Enter your blood pressure" required>
+
+        <label>Cholesterol Level (mg/dL):</label>
+        <input type="number" id="cholesterol" placeholder="Enter cholesterol level" required>
+
+        <label>Genetic Risk (Heart Disease/Diabetes):</label>
+        <select id="genetic">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <button class="submit-btn" onclick="generatePlan()">Generate Treatment Plan</button>
+<div class="output" id="output">
+            <p class="typing" id="aiResponse"></p>
+        </div>
+    </div>
+
+    <script>
+        function generatePlan() {
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+            const smoking = document.getElementById("smoking").value;
+            const bp = document.getElementById("bp").value;
+            const cholesterol = document.getElementById("cholesterol").value;
+            const genetic = document.getElementById("genetic").value;
+
+            // Medical Suggestions Based on Input
+            let response = "🔍 Analyzing your health data...\n\n";
+            
+            response += 🩺 Age: ${age} | Gender: ${gender}\n;
+            response += 🚬 Smoking: ${smoking}\n;
+            response += 🩸 Blood Pressure: ${bp} mmHg\n;
+            response += 🍔 Cholesterol: ${cholesterol} mg/dL\n;
+            response += 🧬 Genetic Risk: ${genetic}\n\n;
+
+            response += "📌 **Precautions & Recommendations:**\n";
+
+            if (bp > 140) {
+                response += "⚠️ High blood pressure detected! Consider reducing sodium intake and exercising regularly.\n";
+            }
+            if (cholesterol > 200) {
+                response += "⚠️ High cholesterol levels! Avoid saturated fats and eat more fiber-rich foods.\n";
+            }
+            if (smoking === "Yes") {
+                response += "🚭 Smoking increases risk of heart disease. Consider quitting for better health.\n";
+            }
+            if (genetic === "Yes") {
+                response += "🧬 Genetic risk detected! Regular health checkups and early screenings are recommended.\n";
+            }
+
+            response += "\n🍎 **Diet Recommendations:**\n";
+            response += "- Eat leafy greens, nuts, and omega-3 rich foods.\n";
+            response += "- Reduce processed sugar and increase fiber intake.\n";
+            response += "- Stay hydrated and drink at least 2-3 liters of water daily.\n";
+
+            response += "\n💪 **Lifestyle Tips:**\n";
+            response += "- Exercise for at least 30 minutes daily.\n";
+            response += "- Manage stress through meditation and deep breathing.\n";
+            response += "- Ensure 7-8 hours of quality sleep each night.\n";
+
+            // Display with typing effect
+            document.getElementById("output").style.display = "block";
+            let i = 0;
+            document.getElementById("aiResponse").innerHTML = "";
+            function typeWriter() {
+                if (i < response.length) {
+                    document.getElementById("aiResponse").innerHTML += response.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 20);
+                }
+            }
+            typeWriter();
+        }
+    </script>
+
+</body>
+</html>
